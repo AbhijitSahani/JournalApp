@@ -10,5 +10,5 @@ import org.studyeasy.jrnlapp.entity.User;
 //@Component
 public interface UserRepository extends MongoRepository<User, ObjectId> {
 
-    User findByUsername(String username);
+    User findByuserName(String username);
 }

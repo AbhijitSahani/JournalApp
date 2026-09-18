@@ -3,6 +3,7 @@ package org.studyeasy.jrnlapp.entity;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 @Data
 @Document(collection  = "journal_entries")
+@NoArgsConstructor
 public class JournalEntry {
 
 

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/journal")
+@RequestMapping("/users")
 public class UserController {
 
 
@@ -33,7 +33,7 @@ public class UserController {
 
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody User user) {
-        User userInDb=userService.findByUsername(user.getUserName());
+        User userInDb=userService.findByuserName(user.getUserName());
         if(userInDb != null){
             userInDb.setUserName(user.getUserName());
             userInDb.setPassword(user.getPassword());
