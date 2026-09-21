@@ -25,11 +25,12 @@ public class JounalEntryService {
     public void saveEntry(JournalEntry journalEntry, String userName) {
 
         try {
-            User user = userService.findByuserName(userName);
-            journalEntry.setDate(LocalDateTime.now());
-            JournalEntry savedOne = journalEntryRepository.save(journalEntry);
-            user.getJournalEntries().add(savedOne);
-            userService.saveEntry(user);
+              User user = userService.findByuserName(userName);
+              journalEntry.setDate(LocalDateTime.now());
+              JournalEntry savedOne = journalEntryRepository.save(journalEntry);
+
+              user.getJournalEntries().add(savedOne);
+              userService.saveEntry(user);
 
         } catch (Exception e) {
             log.error("Exception ", e);
