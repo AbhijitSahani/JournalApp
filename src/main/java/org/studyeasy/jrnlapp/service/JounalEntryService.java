@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.studyeasy.jrnlapp.entity.JournalEntry;
 import org.studyeasy.jrnlapp.entity.User;
 import org.studyeasy.jrnlapp.repository.JournalEntryRepository;
@@ -22,6 +23,7 @@ public class JounalEntryService {
     @Autowired
     private UserService userService;
 
+    @Transactional
     public void saveEntry(JournalEntry journalEntry, String userName) {
 
         try {
@@ -30,10 +32,12 @@ public class JounalEntryService {
               JournalEntry savedOne = journalEntryRepository.save(journalEntry);
 
               user.getJournalEntries().add(savedOne);
+              //user.setUserName(null);
               userService.saveEntry(user);
 
         } catch (Exception e) {
             log.error("Exception ", e);
+            throw new RuntimeException("Exception while saving journal entry", e);
         }
     }
     public void saveEntry(JournalEntry journalEntry) {
