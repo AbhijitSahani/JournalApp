@@ -31,6 +31,8 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
 
+                .authenticationManager(authenticationManager())
+
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/journal/**","/users/**").authenticated()
                         .anyRequest().permitAll()

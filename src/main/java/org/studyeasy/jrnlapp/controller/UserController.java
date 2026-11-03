@@ -31,17 +31,14 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-//    @PostMapping
-//    public ResponseEntity<?> createUser(@RequestBody User user) {
-//
-//        userService.saveNewUser(user);
-//
-//        return new ResponseEntity<>(HttpStatus.CREATED);
-//    }
-@PutMapping("/{userName}")
-public ResponseEntity<?> updateUser(
-        @RequestBody User updatedUser,
-        @PathVariable String userName) {
+  
+@PutMapping
+public ResponseEntity<?> updateUser(@RequestBody User updatedUser) {
+
+    Authentication authentication =
+            SecurityContextHolder.getContext().getAuthentication();
+
+    String userName = authentication.getName();
 
     User userInDb = userService.findByuserName(userName);
 

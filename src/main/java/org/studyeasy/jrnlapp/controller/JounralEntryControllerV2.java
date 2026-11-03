@@ -25,7 +25,7 @@ public class JounralEntryControllerV2 {
     private UserService userService;
 
 
-    @GetMapping("{userName}")
+    @GetMapping
     public ResponseEntity<?> getAllJournalEntriesOfUser(@PathVariable String userName) {
         User user = userService.findByuserName(userName);
         List<JournalEntry> all = jounalEntryService.getAll();
@@ -35,7 +35,7 @@ public class JounralEntryControllerV2 {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping("{userName}")
+    @PostMapping
     public ResponseEntity<JournalEntry> createEntry(@RequestBody JournalEntry myEntry,@PathVariable String userName) {
         try{
            // User user = userService.findByuserName(userName);
@@ -57,7 +57,7 @@ public class JounralEntryControllerV2 {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("id/{userName}/{myId}")
+    @DeleteMapping("id/{myId}")
     public ResponseEntity<?> deleteEntryById(@PathVariable ObjectId myId,@PathVariable String userName) {
 
         jounalEntryService.deletById(myId,userName);
@@ -65,7 +65,7 @@ public class JounralEntryControllerV2 {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
-    @PutMapping("id/{userName}/{myId}")
+    @PutMapping("id/{myId}")
     public ResponseEntity<?> updateEntryById(
             @PathVariable ObjectId myId,
             @RequestBody JournalEntry newEntry,
