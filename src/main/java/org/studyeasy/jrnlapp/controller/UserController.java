@@ -17,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.security.core.Authentication;
+
 
 @RestController
 @RequestMapping("/users")
@@ -31,7 +33,7 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-  
+
 @PutMapping
 public ResponseEntity<?> updateUser(@RequestBody User updatedUser) {
 
