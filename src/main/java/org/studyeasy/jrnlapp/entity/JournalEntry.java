@@ -2,15 +2,19 @@ package org.studyeasy.jrnlapp.entity;
 
 
 import lombok.Data;
-import lombok.Getter;
+
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import tools.jackson.databind.annotation.JsonSerialize;
+import tools.jackson.databind.ser.std.ToStringSerializer;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+
+
+
 @Data
 @Document(collection  = "journal_entries")
 @NoArgsConstructor
@@ -18,7 +22,7 @@ public class JournalEntry {
 
 
     @Id
-
+    @JsonSerialize(using = ToStringSerializer.class)
     private ObjectId id;
     private String title;
     private String content;
